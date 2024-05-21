@@ -1,11 +1,25 @@
 from wsgiref.simple_server import  make_server
 
+HTML ="""
+<!DOCTYPE html>
+<html>
+    <head>
+        <tittle>Servidor en Python</tittle>
+    </head>
+    <body>
+        <h1>Hola mundo, desde mi primer servidor en Python</h1>
+    </body>
+    
+</html>
+
+"""
+
 def application(env, start_response):
-    headers = [('Content-Type', 'text/plain')]
+    headers = [('Content-Type', 'text/html')]
     
     start_response('200 OK', headers)
     
-    return ['Hola mundo'.encode('utf-8')]
+    return [bytes(HTML, 'utf-8')]
 
 server = make_server('localhost', 8000, application)
 
